@@ -1,0 +1,48 @@
+from lib.interface import *
+
+
+def arquivosExiste(nome):
+    try:
+        a = open(nome, 'rt')  # rt é a leitura do arquivo texto
+        a.close()
+    except FileNotFoundError:
+        return False
+    else:
+        return True
+
+
+def criarArquivo(nome):
+    try:
+        a = open(nome, 'wt+')  # wt é a criação do arquivo texto
+        a.close()
+    except:
+        print('\033[31m Houve um ERRO na criação do arquivo\033[m')
+    else:
+        print(f'Arquivo {nome} criado com sucesso!')
+
+
+def lerArquivo(nome):
+    try:
+        a = open(nome, 'rt')
+    except:
+        print('Erro ao ler o arquivo!')
+    else:
+        cabeçalho('ALUNOS CADASTRADOS')
+        print(a.readline())
+    finally:
+        a.close()
+
+
+def cadastrar(arq, nome, genero, idade, rua, numero, cep, bairro, renda, cpf):
+    try:
+        a = open(arq, 'at+')
+    except:
+        print('Houve um erro na abertura do arquivo!')
+    else:
+        try:
+            a.write(f'{nome};{genero},{idade},{rua},{numero},{cep},{bairro},{renda},{cpf}\n')
+        except:
+            print('Houve um ERRO na hora de escrever os dados! ')
+        else:
+            print(f'Novo registro de {nome} adicionado. ')
+            a.close()

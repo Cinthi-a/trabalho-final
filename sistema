@@ -1,0 +1,41 @@
+from time import sleep
+
+from lib.arquivos import *
+from lib.interface import cabeçalho
+
+arq = 'trabalhofinal.txt'
+
+if not arquivosExiste(arq):
+    criarArquivo(arq)
+
+while True:
+    resposta = menu(['Cadastro ', 'Atualização', 'Busca', 'Remoçao', 'Sair'])
+    if resposta == 1:
+        # Opçao de cadastrar um novo aluno.
+        cabeçalho('NOVO CADASTRO')
+        nome = str(input('Informe o nome completo: '))
+        genero = str(input('Informe o gênero: '))
+        idade = int(input('Informe a idade: '))
+        rua = str(input('Informe o nome da sua rua: '))
+        numero = int(input('Informe o numero: '))
+        cep = int(input('Informe o CEP: '))
+        bairro = str(input('Informe o seu bairro: '))
+        renda = float(input('Informe a renda mensal: '))
+        cpf = int(input('Informe o CPF'))
+        cadastrar(arq, nome, genero, idade, rua, numero, cep, bairro, renda, cpf)
+
+    elif resposta == 2:
+        # Opção de listar o conteudo de um arquivo!
+        lerArquivo(arq)
+    elif resposta == 3:
+        # Opção de buscar um aluno
+        cabeçalho('Opção 3')
+    elif resposta == 4:
+        # Opçao de remover um aluno
+        cabeçalho('Opção 4')
+    elif resposta == 5:
+        cabeçalho('Saindo do sistema ... Até logo!')
+        break
+    else:
+        print('\033[31m ERRO! Digite uma opção válida!\033[m')
+    sleep(1)
